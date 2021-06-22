@@ -36,7 +36,38 @@ function init() {
         scoreDiv.append(scoreboardTable);
     }
 
+    //The function below will accept a single score and its index to create the global ranking
+    const appendScores = (singleScore, singleScoreIndex) => {
+        const scoreboardTable = document.querySelector(".scoreboardTable"); //Find the table we created
+
+        let scoreboardTableBodyRow = document.createElement("tr"); //Create the currect table row
+        scoreboardTableBodyRow.className = "scoreboardTableBodyRow";
+
+        //
+        let scoreRanking = document.createElement("td");
+        scoreRanking.innerText = singleScoreIndex;
+
+        let usernameData = document.createElement("td");
+        usernameData.innerText = singleScore.user.username;
+
+        let scoreData = document.createElement("td");
+        scoreData.innerText = singleScore.score;
+
+        let timeData = document.createElement("td");
+        timeData.innerText = singleScore.time_alive;
+
+        let accuracyData = document.createElement("td");
+        accuracyData.innerText = singleScore.accuracy;
+
+        scoreboardTableBodyRow.append(scoreRanking, usernameData, scoreData, timeData, accuracyData); //Append all 5 cells to the table row
+
+        scoreboardTable.append(scoreboardTableBodyRow);
+    }
+
+    let singleScore = {    "id": 6,    "score": 115,    "time_alive": 70.659,    "accuracy": 17.1,    "user_id": 1,    "user": {        "username": "daniel"    }}
+
     createScoreboardTable();
+    appendScores(singleScore, 0);
 }
 
 window.onload = init;
