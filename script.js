@@ -64,6 +64,20 @@ function init() {
         scoreboardTable.append(scoreboardTableBodyRow);
     }
 
+    const getScores = () => {
+        fetch("http://localhost:3306/scores")
+            .then(res => res.json())
+            .then(scores => {
+                createScoreboardTable(); //Clears scoreboard div if it has any children nodes, creates & appends table
+
+                //Iterates through all the objects in the scores array and appends each one to the table body
+                for (const score of scores) {
+                    let scoreIndex = scores.indexOf(score) + 1; //Index of score in score array for global ranking (these are already sorted in the back-end)
+                    appendScores(score, scoreIndex); //creates and appends each row to the table body
+                }
+            })
+    }
+
     let singleScore = {    "id": 6,    "score": 115,    "time_alive": 70.659,    "accuracy": 17.1,    "user_id": 1,    "user": {        "username": "daniel"    }}
 
     createScoreboardTable();
