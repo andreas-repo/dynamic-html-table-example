@@ -64,6 +64,7 @@ function init() {
         scoreboardTable.append(scoreboardTableBodyRow);
     }
 
+    //wont use fetch in this case, will use REST API to access database data
     const getScores = () => {
         fetch("http://localhost:3306/scores")
             .then(res => res.json())
@@ -78,7 +79,8 @@ function init() {
             })
     }
 
-    let singleScore = {    "id": 6,    "score": 115,    "time_alive": 70.659,    "accuracy": 17.1,    "user_id": 1,    "user": {        "username": "daniel"    }}
+    //Test data
+    let singleScore = {    "id": 6,    "score": 115,    "time_alive": 70.659,    "accuracy": 17.1,    "user_id": 1,    "user": {        "username": "daniel"    }};
 
     createScoreboardTable();
     appendScores(singleScore, 0);
